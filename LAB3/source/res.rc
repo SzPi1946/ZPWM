@@ -1,0 +1,291 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "res.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "winres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Polish (Poland) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_PLK)
+LANGUAGE LANG_POLISH, SUBLANG_DEFAULT
+#pragma code_page(1250)
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "res.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""winres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_MAINICON            ICON                    "ikona_pierwsza.ico"
+
+IDI_DRUGA               ICON                    "ikona_druga.ico"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU
+BEGIN
+    POPUP "Opis"
+    BEGIN
+        POPUP "Wyglad"
+        BEGIN
+            MENUITEM "Niski",                       ID_WYGLAD_NISKI
+            MENUITEM "Czerwona Czapeczka",          ID_WYGLAD_CZERWONACZAPECZKA
+            MENUITEM "Czarna kamizelka",            ID_WYGLAD_CZARNAKAMIZELKA
+            MENUITEM "Pomaranczowa koszula",        ID_WYGLAD_POMARANCZOWAKOSZULA
+            MENUITEM "Zielone spodnie",             ID_WYGLAD_ZIELONESPODNIE
+            MENUITEM "Brazowe Buty",                ID_WYGLAD_BRAZOWEBUTY
+            MENUITEM "Czerwony pas",                ID_WYGLAD_CZERWONYPAS
+        END
+        POPUP "Wyposazenie"
+        BEGIN
+            MENUITEM "Mieczyk",                     ID_WYPOSAZENIE_MIECZYK
+            POPUP "Luk"
+            BEGIN
+                POPUP "Drewniany"
+                BEGIN
+                    POPUP "Pochodzenie Drewna"
+                    BEGIN
+                        MENUITEM "Nieokreœlone",                ID_POCHODZENIDREWNA_NIEOKRE40027
+                        MENUITEM "Ale wytrzyma³e",              ID_POCHODZENIEDREWNA_ALEWYTRZYMA40028
+                    END
+                END
+                MENUITEM "Strzaly",                     ID_LUK_STRZALY
+            END
+        END
+        POPUP "Umiejetnosc"
+        BEGIN
+            MENUITEM "Spryt",                       ID_UMIEJETNOSC_SPRYT
+            MENUITEM "Odwazny",                     ID_UMIEJETNOSC_ODWAZNY
+            MENUITEM "Blyskotliwy",                 ID_UMIEJETNOSC_BLYSKOTLIWY
+            MENUITEM "Dobry Strzelec",              ID_UMIEJETNOSC_DOBRYSTRZELEC
+            MENUITEM "Dobry Szermierz",             ID_UMIEJETNOSC_DOBRYSZERMIERZ
+            MENUITEM "Inteligentny",                ID_UMIEJETNOSC_INTELIGENTNY
+        END
+    END
+    POPUP "Poruszanie"
+    BEGIN
+        MENUITEM "Kon",                         ID_PORUSZANIE_KON
+        MENUITEM "Latajaca m³ota",              ID_PORUSZANIE_LATAJACAM40022
+        MENUITEM "Lataj¹ca k³oda",              ID_PORUSZANIE_LATAJ40023
+        MENUITEM "£ódŸ",                        ID_PORUSZANIE_40024
+        MENUITEM "Smok Miluœ",                  ID_PORUSZANIE_SMOKMILU40025
+    END
+    POPUP "Kultura"
+    BEGIN
+        MENUITEM "Gry",                         ID_KULTURA_GRY
+        MENUITEM "Serial",                      ID_KULTURA_SERIAL
+        MENUITEM "Film",                        ID_KULTURA_FILM
+        MENUITEM "Teatr",                       ID_KULTURA_TEATR
+        MENUITEM "Park rozrywki",               ID_KULTURA_PARKROZRYWKI
+        MENUITEM "Zabawki",                     ID_KULTURA_ZABAWKI
+    END
+    POPUP "Uwagi"
+    BEGIN
+        POPUP "Brak uwag"
+        BEGIN
+            POPUP "Tu równie¿"
+            BEGIN
+                POPUP "Brak"
+                BEGIN
+                    POPUP "Jakichkolwiek"
+                    BEGIN
+                        POPUP "Uwag"
+                        BEGIN
+                            MENUITEM ":)",                          ID_UWAG_
+                        END
+                    END
+                END
+            END
+        END
+        MENUITEM "Zdecydowanie brak",           ID_UWAGI_ZDECYDOWANIEBRAK
+        MENUITEM "Jakichkolwiek uwag",          ID_UWAGI_JAKICHKOLWIEKUWAG
+    END
+END
+
+IDR_MENU2 MENU
+BEGIN
+    POPUP "Opis"
+    BEGIN
+        POPUP "Wyglad"
+        BEGIN
+            MENUITEM "Olbrzymi",                    ID_WYGLAD_OLBRZYMI
+            MENUITEM "£ysy",                        ID_WYGLAD_40047
+            MENUITEM "Ró¿owa koszula",              ID_WYGLAD_R40048
+            MENUITEM "Czerwony Pas",                ID_WYGLAD_CZERWONYPAS40049
+            MENUITEM "Czarne spodnie",              ID_WYGLAD_CZARNESPODNIE
+            MENUITEM "Brazowe Buty",                ID_WYGLAD_BRAZOWEBUTY40051
+        END
+        POPUP "Wyposazenie"
+        BEGIN
+            MENUITEM "Tarcza",                      ID_WYPOSAZENIE_TARCZA
+            MENUITEM "Róg",                         ID_WYPOSAZENIE_R40053
+            MENUITEM "Wielkie Piêœci",              ID_WYPOSAZENIE_WIELKIEPI40054
+        END
+        POPUP "Umiejetnosc"
+        BEGIN
+            MENUITEM "Sila",                        ID_UMIEJETNOSC_SILA
+            MENUITEM "Tchórzliwy",                  ID_UMIEJETNOSC_TCH40056
+            POPUP "Du¿o je"
+            BEGIN
+                POPUP "Czy to umiejêtnoœæ"
+                BEGIN
+                    POPUP "Ciêzko powiedzieæ"
+                    BEGIN
+                        MENUITEM "Ale mo¿e",                    ID_CI40060
+                    END
+                END
+            END
+        END
+    END
+    POPUP "Poruszanie"
+    BEGIN
+        MENUITEM "Smok Miluœ",                  ID_PORUSZANIE_SMOKMILU40061
+        MENUITEM "£ódŸ",                        ID_PORUSZANIE_40062
+        MENUITEM "Lataj¹ca miot³a",             ID_PORUSZANIE_LATAJ40063
+    END
+    POPUP "Kultura"
+    BEGIN
+        MENUITEM "Gry",                         ID_KULTURA_GRY40064
+        MENUITEM "Film",                        ID_KULTURA_FILM40065
+        MENUITEM "Serial",                      ID_KULTURA_SERIAL40066
+        MENUITEM "Komiks",                      ID_KULTURA_KOMIKS
+    END
+    POPUP "Uwagi"
+    BEGIN
+        MENUITEM "Brak uwag",                   ID_UWAGI_BRAKUWAG40068
+        MENUITEM ":) ",                         ID_UWAGI_
+        MENUITEM "Mi³ego przegladania",         ID_UWAGI_MI40070
+    END
+END
+
+#endif    // Polish (Poland) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+/////////////////////////////////////////////////////////////////////////////
+// English (United States) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_MAINVIEW DIALOGEX 0, 0, 187, 94
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Kajko"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    LTEXT           "",IDC_STATIC,55,42,74,8
+    PUSHBUTTON      "Kliknij!",IDC_BUTTON1,35,26,106,51
+END
+
+IDD_SECONDVIEW DIALOGEX 0, 0, 187, 94
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CAPTION | WS_SYSMENU | WS_THICKFRAME
+CAPTION "Kokosz"
+FONT 8, "MS Shell Dlg", 400, 0, 0x0
+BEGIN
+    PUSHBUTTON      "Kliknij!",IDC_BUTTON1,36,23,110,49
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO
+BEGIN
+    IDD_MAINVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+
+    IDD_SECONDVIEW, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 87
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// AFX_DIALOG_LAYOUT
+//
+
+IDD_MAINVIEW AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+IDD_SECONDVIEW AFX_DIALOG_LAYOUT
+BEGIN
+    0
+END
+
+#endif    // English (United States) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
