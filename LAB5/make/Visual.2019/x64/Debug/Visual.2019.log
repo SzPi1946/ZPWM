@@ -1,7 +1,0 @@
-﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(445,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  main.cpp
-C:\Users\SzPi\Documents\ZPWM\LAB5\source\main.cpp(44,6): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\SzPi\Documents\ZPWM\LAB5\source\main.cpp(62,76): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\SzPi\Documents\ZPWM\LAB5\source\main.cpp(82,8): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
-C:\Users\SzPi\Documents\ZPWM\LAB5\source\main.cpp(119,30): warning C4101: 'si_other': unreferenced local variable
-  Visual.2019.vcxproj -> C:\Users\SzPi\Documents\ZPWM\LAB5\make\Visual.2019\\bin\lab002.exe

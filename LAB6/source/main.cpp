@@ -5,63 +5,98 @@
 #include <cstdlib>
 #include "res.h"
 
-using namespace std;
-int number;
-INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lParam)
+#pragma comment( lib, "winmm.lib")
+
+INT_PTR CALLBACK DialogProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 {
-  srand(unsigned int(time(NULL)));
+  
+ 
+
   switch (uMsg)
   {
   case WM_COMMAND:
-    char wartosc[10];
     switch (HIWORD(wParam))
     {
     case BN_CLICKED: // zdarzenie klikniecia na UI
       switch (LOWORD(wParam))
       {
-      case IDC_BUTTON: //klikniecie na nasz przycisk
+      case IDC_BUTTON1:
+        WAVEFORMATEX pcmWaveFormat;                  //Definicja formatu dŸwieku
+        pcmWaveFormat.wFormatTag = WAVE_FORMAT_PCM;  //Format próbek
+        pcmWaveFormat.nChannels = 1;                 //Liczba kana³ów
+        pcmWaveFormat.nSamplesPerSec = 44100L;       //Próbkowanie
+        pcmWaveFormat.wBitsPerSample = 8;            //Iloœæ bitów na próbkê
+        pcmWaveFormat.nAvgBytesPerSec = 44100L;      //Iloœæ Bajtów na sekundê 
+        pcmWaveFormat.nBlockAlign = 1;
+        pcmWaveFormat.cbSize = 0;
+
+        MMRESULT mmResult;
+        HWAVEOUT hwo{};                     //Uchwyt do interfejsu urz¹dzenia odtwarzaj¹cego
+        UINT devId;                       //Identyfikator urz¹dzenia 
+
+        for (devId = 0; devId < waveOutGetNumDevs(); devId++)
         {
-        char temp_buffer[10];
-        //MessageBox(hwndDlg, "Text", "Kikniecie", MB_OK);
-        HWND hwndEditBox = GetDlgItem(hwndDlg, IDC_EDIT);
-        int iTextLength = GetWindowTextLength(hwndEditBox);
-        GetWindowText(hwndEditBox, temp_buffer, iTextLength + 1);
-        int Guess = atoi(temp_buffer);
-        if (number == Guess)
+          mmResult = waveOutOpen(&hwo, devId, &pcmWaveFormat, 0, 0, CALLBACK_NULL);
+          if (mmResult == MMSYSERR_NOERROR)
           {
-          MessageBox(hwndDlg, "Gratulacje!", "Gratulacje!", MB_OK);
+            break;
           }
-        else if (number > Guess)
-          {
-          MessageBox(hwndDlg, "Zbyt mala liczba!", "Sprobuj jeszcze raz", MB_OK);
-          }
-        else if (number < Guess)
-          {
-          MessageBox(hwndDlg, "Zbyt duza liczba!", "Sprobuj jeszcze raz!", MB_OK);
-          }
-        //IDC_EDIT1
-        //int iTextLength = GetWindowTextLength(hwndEditBox);
-        //CHAR szText[500];
-        //GetWindowText(hwndEditBox, szText, iTextLength + 1);
-        //SetWindowText((HWND)lParam, szText);
-        return TRUE;
         }
-      case IDC_BUTTON2:
+        if (mmResult != MMSYSERR_NOERROR)
         {
-        number = rand() % 40 + 1;
-        wsprintf(wartosc, "%d", number);
+          MessageBox(hwnd, TEXT("Nie znaleziono karty d¿wiekowej o wymaganych paramtrach"), TEXT("Error"), MB_OK);
+          return mmResult;
+        }
+        // Przygotowanie próbek do odtworzenia 
+        WAVEHDR whdr;
+        ZeroMemory(&whdr, sizeof(WAVEHDR));
+        whdr.lpData = new char[pcmWaveFormat.nAvgBytesPerSec * 1]; //Iloœæ bajtów na sekundê
+        whdr.dwBufferLength = pcmWaveFormat.nAvgBytesPerSec * 1;   // razy iloœæ sekund 
+        whdr.dwUser = 0;
+        whdr.dwFlags = 0;
+        whdr.dwLoops = 0;
+        whdr.dwBytesRecorded = 0;
+        whdr.lpNext = 0;
+        whdr.reserved = 0;
+        //Wype³nienie buffora próbek próbkami sygna³u o czêstotliwoœci 880 Hz 
+        for (int i = 0; i < whdr.dwBufferLength; i++)
+        {
+          whdr.lpData[i] = 128 * sin(i * 880.0 / (double)pcmWaveFormat.nSamplesPerSec) + 128;
+        }
+
+        waveOutSetVolume(hwo, 0xFFFFFFFF); //Ustawienie g³oœnoœci
+        mmResult = waveOutPrepareHeader(hwo, &whdr, sizeof(WAVEHDR)); //Wys³anie nag³ówka 
+        if (mmResult != MMSYSERR_NOERROR)                                //Przygotowanie 
+        {                                                             //urz¹dzenia
+          MessageBox(hwnd, TEXT("Nie Mo¿na zainicjowaæ karty"), TEXT("Error"), MB_OK);
+          return mmResult;
+        }
+
+        mmResult = waveOutWrite(hwo, &whdr, sizeof(WAVEHDR));//Wys³anie próbek do urzadznia 
+
+        if (mmResult != MMSYSERR_NOERROR)
+        {
+          MessageBox(hwnd, TEXT("Nie mozna za³adowaæ próbek"), TEXT("Error"), MB_OK);
+          return mmResult;
+        }
+
+        while ((whdr.dwFlags & WHDR_DONE) != WHDR_DONE)
+        {
+        
+            Sleep(200); //Czekanie na koniec 
+         
+        }
+        //otwarzania     
+        //Zamkniecie urz¹dzenia 
+        mmResult = waveOutUnprepareHeader(hwo, &whdr, sizeof(WAVEHDR));
+        mmResult = waveOutClose(hwo); delete[] whdr.lpData; //Usuniêcie bufora z pamiec
+    
         break;
-        }
       }
     }
     return FALSE;
-  case WM_LBUTTONDOWN:
-    CHAR szText[200];
-    wsprintf(szText, TEXT("kliknales muszka x=%d, y=%d"), LOWORD(lParam), HIWORD(lParam));
-    MessageBox(hwndDlg, szText, TEXT("Klikniecie"), MB_OK);
-    return TRUE;
   case WM_CLOSE:
-    DestroyWindow(hwndDlg); //zniszczenie okienka
+    DestroyWindow(hwnd); //zniszczenie okienka
     PostQuitMessage(0);
     return TRUE;
   }
@@ -70,34 +105,19 @@ INT_PTR CALLBACK DialogProc(HWND hwndDlg, UINT uMsg, WPARAM wParam, LPARAM lPara
 
 int WINAPI WinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, PSTR szCmdLine, int iCmdShow)
 {
-  //git tortoise 
-
-  //w repozytorium tylko niezbedne pliki
-  //nie umieszczamy: plików tymczasowych, pliku .exe nie umieszczamy
-  //nie umieszczamy debug i release 
-
-  //push aby wrzucic cos na repozytorium 
-  //zielony znaczek to znaczy ze repozytorium dosta³o dobre pliki i jestgit
-  // inny znaczek oznacza ze byly zmiany i trzeba na nowo je zrobiæ 
-
-  // Okienka systemu windows 9.03.2020
-  //okienko bierzem z Zasobó , czyli pliki dodane w momencie kompilacji do programu 
-  //dzieki temu nie trzeba samemu tworzyc np okienek, tylko z szablonu korzystamy
-  //plik zasobów umieszcza sie w: *.rc 
-  //plik mozna edytowac jako plik tekstowy, lub za pomoca edytora wizualnego Visuala
-
-  HWND hwndMainWindow = CreateDialog(hinstance, MAKEINTRESOURCE(IDD_MAINVIEW), NULL, DialogProc);
-  ShowWindow(hwndMainWindow, iCmdShow);
+  
+  HWND hwnd = CreateDialog(hinstance, MAKEINTRESOURCE(IDD_MAINVIEW), NULL, DialogProc);
+  ShowWindow(hwnd, iCmdShow);
+  SetForegroundWindow(hwnd);                                                      
+  SetFocus(hwnd);
 
   MSG msg = {};
   while (GetMessage(&msg, NULL, 0, 0))
   {
     TranslateMessage(&msg);
     DispatchMessage(&msg);
-
   }
-  //stworz gre w jaka liczbe mam na mysli, ale tym razem komputer ja wybral a my musimy zgadnac, 
-  // on losuje od 1 do 40 a myu w pole tekstowe wpisujemy liczbe i sprawdzamy czy trafimy
+
 
   return 0;
 }
